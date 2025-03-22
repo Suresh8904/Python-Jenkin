@@ -2,7 +2,7 @@ pipeline{
     agent any
 
     environment {
-        GIT_CREDENTIALID = 'github-credential'
+        GIT_CREDENTIALID = 'githubnewcred'
         DOCKER_HUB_USER = 'sureshk89' 
         DOCKER_HUB_PASSWORD = 'Greengrass@89'
         IMAGE_NAME = 'sureshk89/python-jenkin'
