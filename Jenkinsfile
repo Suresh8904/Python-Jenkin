@@ -11,13 +11,16 @@ pipeline{
         stage('Clone Repository'){
             steps {
                 script{
-                    checkout ([$class: 'GitSCM', 
-                    branches:[[name: '*/main']],
-                    userRemoteConfigs: [[
-                        url: 'https://github.com/Suresh8904/Python-Jenkin.git',
-                        credentialsId: GIT_CREDENTIALID
-                    ]]
-                    ])
+                    // checkout ([$class: 'GitSCM', 
+                    // branches:[[name: '*/main']],
+                    // userRemoteConfigs: [[
+                    //     url: 'https://github.com/Suresh8904/Python-Jenkin.git',
+                    //     credentialsId: GIT_CREDENTIALID
+                    // ]]
+                    // ])
+                    git branch: 'main',
+                    credentialsId:'githubnewcred',
+                    url: 'https://github.com/Suresh8904/Python-Jenkin.git'
                 }
             }
         }
