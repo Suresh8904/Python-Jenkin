@@ -2,14 +2,23 @@ pipeline{
     agent any
 
     environment {
-        DOCKER_HUB_USER= 'sureshk89' 
-        DOCKER_HUB_PASSWORD= 'Greengrass@89'
-        IMAGE_NAME= 'sureshk89/python-jenkin'
+        GIT_CREDENTIALID = 'github-credential'
+        DOCKER_HUB_USER = 'sureshk89' 
+        DOCKER_HUB_PASSWORD = 'Greengrass@89'
+        IMAGE_NAME = 'sureshk89/python-jenkin'
     }
     stages{
         stage('Clone Repository'){
             steps {
-                git 'https://github.com/Suresh8904/Python-Jenkin.git'
+                script{
+                    checkout ([$class: 'GitSCM', 
+                    branches:[[name: '*/main']],
+                    userRemoteConfigs: [[
+                        url: 'https://github.com/Suresh8904/Python-Jenkin.git',
+                        credentialsId: GIT_CREDENTIALID
+                    ]]
+                    ])
+                }
             }
         }
          stage('Docker Build'){
